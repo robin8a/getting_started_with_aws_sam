@@ -4,10 +4,24 @@ Parameters:
   IdentityNameParameter:
     Type: String
 Resources:
+  Table:
+    PrimaryKey:
+      Name: greeting
+      Type: String
+    ProvisionedThroughput:
+      ReadCapacityUnits: 2
+      WriteCapacityUnits: 2
+    Type: AWS::Serverless::SimpleTable
   helloworldpython3:
     Properties:
-      CodeUri: s3://kl-tbu-sam-chatbot-translator/7625bbea7b1bd98bd22892c6fcf3e075
+      CodeUri: s3://kl-tbu-sam-chatbot-translator/ad4e7b19c6c9d8c612a060bf2943cabc
       Description: A starter AWS Lambda function.
+      Environment:
+        Variables:
+          REGION_NAME:
+            Ref: AWS::Region
+          TABLE_NAME:
+            Ref: Table
       Events:
         klStUdemyHelloWorldSAMAPI:
           Properties:
@@ -16,6 +30,10 @@ Resources:
           Type: Api
       Handler: app.lambda_handler
       MemorySize: 128
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: Table
       Runtime: python3.6
       Timeout: 3
     Type: AWS::Serverless::Function
