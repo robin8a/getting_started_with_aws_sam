@@ -6,8 +6,14 @@ Parameters:
 Resources:
   helloworldpython3:
     Properties:
-      CodeUri: s3://kl-tbu-sam-chatbot-translator/a1c6af21d9484f6087e6d6b5296b892e
+      CodeUri: s3://kl-tbu-sam-chatbot-translator/7625bbea7b1bd98bd22892c6fcf3e075
       Description: A starter AWS Lambda function.
+      Events:
+        klStUdemyHelloWorldSAMAPI:
+          Properties:
+            Method: GET
+            Path: /hello
+          Type: Api
       Handler: app.lambda_handler
       MemorySize: 128
       Runtime: python3.6

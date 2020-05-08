@@ -40,11 +40,20 @@ aws cloudformation package help
 aws cloudformation package --s3-bucket kl-tbu-sam-chatbot-translator --template-file template.yaml --output-template-file gen/template-generated.yaml
 
 # execute the following command to deploy the packaged template
-xecute the following command to deploy the packaged template
 aws cloudformation deploy --template-file /Users/robin8a/Documents/getting_started_with_aws_sam/gen/template-generated.yaml --stack-name <YOUR STACK NAME>
 
 aws cloudformation deploy --template-file gen/template-generated.yaml --stack-name kl-st-udemy-hello-world-sam
 
 aws cloudformation deploy --template-file gen/template-generated.yaml --stack-name kl-st-udemy-hello-world-sam --capabilities CAPABILITY_IAM --parameter-overrides IdentityNameParameter=xyz
+
+```
+
+### Update
+```sh
+# package
+aws cloudformation package --s3-bucket kl-tbu-sam-chatbot-translator --template-file template.yaml --output-template-file gen/template-generated.yaml
+
+# deploy
+aws cloudformation deploy --template-file gen/template-generated.yaml --stack-name kl-st-udemy-hello-world-sam --capabilities CAPABILITY_IAM 
 
 ```
